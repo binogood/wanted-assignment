@@ -1,4 +1,5 @@
 # 디폴트 무시된 파일성
+app/config.py
 
 /shelf/
 /workspace.xml
