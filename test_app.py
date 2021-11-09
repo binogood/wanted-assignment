@@ -1,24 +1,20 @@
 import pytest
 import json
-import requests
-
 from fastapi.testclient import TestClient
-from main import create_app
-
+from app.main import create_app
 
 @pytest.fixture
 def api():
-    api = TestClient(create_app())
-    return api
+    return TestClient(create_app())
 
-#
 # def test_company_name_autocomplete(api):
 #     """
 #     1. 회사명 자동완성
 #     회사명의 일부만 들어가도 검색이 되어야 합니다.
 #     header의 x-wanted-language 언어값에 따라 해당 언어로 출력되어야 합니다.
 #     """
-#     resp = api.get("/search?query=링크", headers=[("x-wanted-language", "ko")])
+#     resp = api.get("/search?query=링크", headers={"x-wanted-language": "ko"})
+#     # resp = api.get("/search?query=링크", headers=[("x-wanted-language", "ko")])
 #     searched_companies = json.loads(resp.data.decode("utf-8"))
 #
 #     assert resp.status_code == 200
@@ -27,34 +23,36 @@ def api():
 #         {"company_name": "스피링크"},
 #     ]
 
+def test_company_search(api):
+    """
+    2. 회사 이름으로 회사 검색
+    header의 x-wanted-language 언어값에 따라 해당 언어로 출력되어야 합니다.
+    """
+    resp = api.get(
+        "/companies/Wantedlab", headers={"x-wanted-language": "ko"}
+    # "/companies/Wantedlab", headers = [("x-wanted-language", "ko")]
+    )
+    print('*'*50)
+    print(resp.json())
+    print('*'*50)
 
-# def test_company_search(api):
-#     """
-#     2. 회사 이름으로 회사 검색
-#     header의 x-wanted-language 언어값에 따라 해당 언어로 출력되어야 합니다.
-#     """
-#     resp = api.get(
-#         "/companies/Wantedlab", headers=[("x-wanted-language", "ko")]
-#     )
-#
-#     company = json.loads(resp.data.decode("utf-8"))
-#     assert resp.status_code == 200
-#     assert company == {
-#         "company_name": "원티드랩",
-#         "tags": [
-#             "태그_4",
-#             "태그_20",
-#             "태그_16",
-#         ],
-#     }
+    # company = json.loads(resp.content.decode("utf-8"))
+    assert resp.status_code == 200
+    assert resp.json() == {
+        "company_name": "원티드랩",
+        "tags": [
+            "태그_4",
+            "태그_16",
+            "태그_20",
+        ],
+    }
 
-    # # 검색된 회사가 없는경우 404를 리턴합니다.
-    # resp = api.get(
-    #     "/companies/없는회사", headers=[("x-wanted-language", "ko")]
-    # )
-    #
-    # assert resp.status_code == 404
+    # 검색된 회사가 없는경우 404를 리턴합니다.
+    resp = api.get(
+        "/companies/없는회사", headers={"x-wanted-language": "ko"}
+    )
 
+    assert resp.status_code == 404
 
 def test_new_company(api):
     """
@@ -94,11 +92,12 @@ def test_new_company(api):
                 }
             ]
         },
-        headers=[("x-wanted-language", "tw")],
+        headers={"x-wanted-language": "tw"},
+        # headers=[("x-wanted-language", "tw")],
     )
 
-    company = json.loads(resp.data.decode("utf-8"))
-    assert company == {
+    # company = json.loads(resp.data.decode("utf-8"))
+    assert resp.json() == {
         "company_name": "LINE FRESH",
         "tags": [
             "tag_1",

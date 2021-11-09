@@ -20,7 +20,25 @@ async def create_company_service(company_info, x_wanted_language, session):
         lang_id = company_dao.find_language_dao(i[0], session)
         company_dao.create_company_language_dao(company_id, lang_id, i[1], session)
 
-    return True
+    temp_dic = {
+        'company_id': company_id
+    }
+
+    return temp_dic
+
+
+def find_company_service(temp_dict, x_wanted_language, session):
+    lang_id = company_dao.find_language_dao(x_wanted_language, session)
+    tag_list = company_dao.find_tag_all_dao(temp_dict['company_id'], session)
+    company = company_dao.find_company_dao(temp_dict['company_id'], lang_id, session)
+    result = {'company_name': company}
+    tags = []
+    for idx in range(len(tag_list)):
+        tag_name = company_dao.find_tag_name_dao(tag_list[idx][0], session)
+        tags.append(tag_name)
+
+    result['tags'] = tags
+    return result
 
 
 def company_search_service(company_name, x_wanted_language, session):
@@ -34,7 +52,7 @@ def company_search_service(company_name, x_wanted_language, session):
     company = company_dao.find_company_dao(company_id, lang_id, session)
     result = {'company_name': company}
     tags = []
-    for idx in range(len(tag_list)):
+    for idx in range(0, len(tag_list)):
         tag_name = company_dao.find_tag_name_dao(tag_list[idx][0], session)
         tags.append(tag_name)
 
