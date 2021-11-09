@@ -85,3 +85,17 @@ def find_company_dao(company_id, lang_id, session):
     company = session.query(CompanyLanguageName.company_name).filter(CompanyLanguageName.company_id == company_id,
                                                                      CompanyLanguageName.language_id == lang_id)
     return company[0][0]
+
+
+def autocomplete_company_language_dao(query, lang, session):
+    company_names = []
+    lang_id = find_language_dao(lang, session)
+
+    company_name = session.query(CompanyLanguageName.company_name).filter(
+                                                 CompanyLanguageName.company_name.like('%' + query + '%')&
+                                                CompanyLanguageName.language_id == lang_id).all()
+    for i in company_name:
+        company_names.append(i[0])
+    return company_names
+
+
