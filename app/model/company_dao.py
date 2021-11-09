@@ -81,7 +81,6 @@ def find_company_id_dao(company_name, session):
         return company[0]
     return False
 
-
 def find_company_dao(company_id, lang_id, session):
     company = session.query(CompanyLanguageName.company_name).filter(CompanyLanguageName.company_id == company_id,
                                                                      CompanyLanguageName.language_id == lang_id)
