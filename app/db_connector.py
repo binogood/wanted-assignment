@@ -8,13 +8,18 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
 
-DB_URL: str = f"mysql+pymysql://{DATABASE['user']}:{DATABASE['password']}@localhost/\
+DB_URL: str = f"mysql+pymysql://{DATABASE['user']}:@localhost/\
             {DATABASE['database']}?charset={DATABASE['charset']}"
-engine = create_engine(DB_URL)
+
+engine = create_engine(
+    DB_URL,
+    encoding='utf-8'
+)
+
 session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
 base = declarative_base()
 
-#
+
 # def get_db():
 #     db = db_session()
 #     try:

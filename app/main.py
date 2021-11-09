@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.view import company_view, tag_view
+from view import company_view
 
 
 def create_app():

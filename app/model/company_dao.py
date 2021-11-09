@@ -1,4 +1,4 @@
-from app.database.schema import Company
+from database.schema import Company
 
 
 class CompanyDao:

@@ -1,6 +1,6 @@
 # 디폴트 무시된 파일성
 app/config.py
-
+db_upload.py
 /shelf/
 /workspace.xml
 # Datasource local storage ignored files
