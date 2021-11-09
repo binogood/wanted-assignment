@@ -10,7 +10,7 @@ from sqlalchemy import (
     ForeignKey
 )
 from sqlalchemy.orm import relationship
-from app.database.conn import base
+from database.conn import base
 
 
 class Company(base):

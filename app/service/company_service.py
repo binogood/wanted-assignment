@@ -1,5 +1,5 @@
-from app.response import *
-from app.model import company_dao
+from response import *
+from model import company_dao
 
 
 async def create_company_service(company_info, x_wanted_language, session):

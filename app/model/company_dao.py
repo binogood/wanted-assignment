@@ -1,4 +1,4 @@
-from app.database.schema import (
+from database.schema import (
     Company,
     Language,
     CompanyLanguageName,

@@ -1,13 +1,13 @@
-from fastapi import APIRouter, Depends, Header
+from fastapi import APIRouter, Depends, Header, Request
 from sqlalchemy.orm import Session
 from typing import Optional
 from fastapi.encoders import jsonable_encoder
 
-from app.models import Company
-from app.response import *
-from app.database.conn import db
+from models import Company
+from response import *
+from database.conn import db
 
-from app.service import company_service
+from service import company_service
 
 router = APIRouter()
 
