@@ -1,20 +1,31 @@
-from pydantic.main import BaseModel
-
-
-class Company(BaseModel):
-    company_ko: str = None
-    company_en: str = None
-    company_ja: str = None
-    tag_id: int = None
-
-    class Config:
-        orm_mode = True
+from pydantic import BaseModel
+from typing import Optional, List
 
 
 class Tag(BaseModel):
-    name_ko: str = None
-    name_en: str = None
-    name_ja: str = None
+    ko: str = '태그_1'
+    en: str = 'tag_1'
+    ja: str = 'タグ_1'
 
-    class Config:
-        orm_mode = True
+
+class TagName(BaseModel):
+    tag_name: Optional[Tag] = None
+
+
+class CompanyName(BaseModel):
+    ko: str = '원티드'
+    en: str = 'wanted'
+    ja: str = ''
+
+
+class Company(BaseModel):
+    company_name: Optional[CompanyName] = None
+    tags: Optional[List[TagName]] = None
+
+
+class CompanyLanguage(BaseModel):
+    Language: str = None
+
+
+class Language(BaseModel):
+    name: str = None
