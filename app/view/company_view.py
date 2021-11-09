@@ -34,7 +34,7 @@ async def list_company(x_wanted_language: Optional[str] = Header('ko'), company_
 @router.get("/search")
 async def name_autocomplete_company(query : Optional[str], request:Request, session: Session = Depends(db.session)):
     lang = request.headers.get("x-wanted-language")
-    data = await company_service.search_company_service(query, lang, session)
+    data = await company_service.company_automatch_service(query, lang, session)
     if data:
         return data
     return ApiException(404, SEARCH_FAILED)
