@@ -101,25 +101,37 @@ Tool : <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&log
 - `./requirements.txt`
 
 ## Endpoint  
-![image](https://user-images.githubusercontent.com/32921115/140575249-e67b58be-d5c0-4bdf-baec-c265efcd898c.png)
+![image](https://user-images.githubusercontent.com/78228444/140987466-18431ef6-5278-4cb6-a598-dfd439d9fd3d.png)
+
 
 ## 구현기능  
 
-### 회사 생성(Company), 태그 생성(Tag)
+### 회사 생성(Company)
 - ```회사생성 성공시``` :
 - ```회사생성 실패시``` :
-- ```태그생성 성공시``` :
-- ```태그성공 실패시``` :
 
+### 회사 조회 (Search)
+- ```조회 성공시``` : status 200, header의 x-wanted-language 언어값에 따라 해당 언어로 출력되어야 합니다.
+```
+{
+  "company_name": "원티드랩",
+  "tags": [
+    "태그_4",
+    "태그_16",
+    "태그_20"
+  ]
+}
+``` 
+
+- ```조회 실패시``` : status 404, 
+ ``` 
+ '회사를 찾을수 없습니다.'
+ ```
 
 ### 회사명 자동 완성 (Search)
 - ```검색 성공시``` : status 200과 함께 쿼리와 언어값에 따른 모든 결과 값을 반환한다.
 - ```검색 실패시``` : status 404와 함께 조건에 맞는 회사명이 없다는 에러 메시지를 반환한다.
 
-
-### 회사명 검색 (Search)
-- ```검색 성공시``` : 
-- ```검색 실패시``` :
 
 # Reference
 이 프로젝트는 원티드x위코드 백엔드 프리온보딩 과제 일환으로 원티드랩에서 출제한 과제를 기반으로 만들었습니다.
