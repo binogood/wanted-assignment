@@ -112,8 +112,13 @@ Tool : <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&log
 - ```태그성공 실패시``` :
 
 
+### 회사명 자동 완성 (Search)
+- ```검색 성공시``` : status 200과 함께 쿼리와 언어값에 따른 모든 결과 값을 반환한다.
+- ```검색 실패시``` : status 404와 함께 조건에 맞는 회사명이 없다는 에러 메시지를 반환한다.
+
+
 ### 회사명 검색 (Search)
-- ```검색 성공시``` :
+- ```검색 성공시``` : 
 - ```검색 실패시``` :
 
 # Reference
