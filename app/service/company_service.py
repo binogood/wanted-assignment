@@ -42,4 +42,9 @@ def company_search_service(company_name, x_wanted_language, session):
     return result
 
 
-# async def search_company_service(q, session):
+async def company_automatch_service(query, lang, session):
+    datas = company_dao.search_company_language_dao(query, lang, session)
+    company_search_list = []
+    for data in datas:
+        company_search_list.append({"company_name": data})
+    return company_search_list
