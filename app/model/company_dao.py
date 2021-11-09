@@ -48,12 +48,14 @@ def find_tag_dao(tag_name, session):
 
 def find_tag_all_dao(company_id, session):
     tag_list = session.query(CompanyTag.tag_id).filter(CompanyTag.company_id == company_id).all()
-    return tag_list
+    if tag_list:
+        return tag_list
+    return False
 
 
-def find_tag_name_dao(tag_id, session):
-    tag_name = session.query(TagLanguageName.tag_name).filter(TagLanguageName.tag_id == tag_id).first()
-    print(tag_name)
+def find_tag_name_dao(tag_id, lang_id, session):
+    tag_name = session.query(TagLanguageName.tag_name).filter(TagLanguageName.tag_id == tag_id,
+                                                              TagLanguageName.language_id == lang_id).first()
     return tag_name[0]
 
 
@@ -87,15 +89,7 @@ def find_company_dao(company_id, lang_id, session):
     return company[0][0]
 
 
-def autocomplete_company_language_dao(query, lang, session):
-    company_names = []
-    lang_id = find_language_dao(lang, session)
-
-    company_name = session.query(CompanyLanguageName.company_name).filter(
-                                                 CompanyLanguageName.company_name.like('%' + query + '%')&
-                                                CompanyLanguageName.language_id == lang_id).all()
-    for i in company_name:
-        company_names.append(i[0])
-    return company_names
-
-
+def find_company_name_dao(company_id, lang_id, session):
+    company_name = session.query(CompanyLanguageName.company_name).filter(CompanyLanguageName.company_id == company_id,
+                                                                CompanyLanguageName.language_id == lang_id).first()
+    return company_name

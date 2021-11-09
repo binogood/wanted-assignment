@@ -5,7 +5,7 @@ from typing import Optional, List
 class Tag(BaseModel):
     ko: str = '태그_1'
     en: str = 'tag_1'
-    ja: str = 'タグ_1'
+    tw: str = 'tag_1'
 
 
 class TagName(BaseModel):
@@ -15,7 +15,7 @@ class TagName(BaseModel):
 class CompanyName(BaseModel):
     ko: str = '원티드'
     en: str = 'wanted'
-    ja: str = ''
+    tw: str = ''
 
 
 class Company(BaseModel):
