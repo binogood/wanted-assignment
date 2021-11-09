@@ -17,3 +17,6 @@ INVALID_INPUT_COMPANY_NAME_AND_LANGUAGE = "회사명가 언어를 잘못 입력�
 ALREADY_EXISTS_COMPANY_NAME = "이미 존재하는 회사명입니다."
 
 CREATE_FAILED = "생성 실패"
+
+FIND_NOT_COMPANY = "회사를 찾을수 없습니다."
+FIND_NOT_LANGUAGE = "언어를 찾을수 없습니다."

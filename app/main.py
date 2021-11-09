@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from dataclasses import asdict
 
-from view import company_view, tag_view
+from view import company_view
 from app.config import conf
 from app.database.conn import db
 

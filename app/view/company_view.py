@@ -11,21 +11,21 @@ from app.service import company_service
 
 router = APIRouter()
 
-class CompanyView:
 
-    @router.post("/companies")
-    async def create_company(company_info: Company, lang: Optional[str] = Header('ko'),
-                             session: Session = Depends(db.session)):
-        if not company_info.company_name:
-            raise ApiException(404, INVALID_INPUT_COMPANY_NAME)
-        if not company_info.tags:
-            raise ApiException(404, INVALID_INPUT_TAG)
-        if await company_service.create_company_service(company_info, lang, session):
-            return 1
-            # raise ApiException(200, CREATE_COMPANY)
-        raise ApiException(400, CREATE_FAILED)
+@router.post("/companies")
+async def create_company(company_info: Company, x_wanted_language: Optional[str] = Header('ko'),
+                         session: Session = Depends(db.session)):
+    if not company_info.company_name:
+        raise ApiException(404, INVALID_INPUT_COMPANY_NAME)
+    if not company_info.tags:
+        raise ApiException(404, INVALID_INPUT_TAG)
+    if await company_service.create_company_service(company_info, x_wanted_language, session):
+        return True
+    raise ApiException(400, CREATE_FAILED)
 
-    @router.get("/list")
-    async def list_company(self, session: Session = Depends(db_connector.session)):
-        company_list = CompanyService.company_list_service(session)
-        return {'data': company_list}
+
+@router.get("/companies/{company_name}")
+async def list_company(x_wanted_language: Optional[str] = Header('ko'), company_name: Optional[str] = None,
+                       session: Session = Depends(db.session)):
+    company = company_service.company_search_service(company_name, x_wanted_language, session)
+    return company
