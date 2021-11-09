@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from app.models import Company
-from app.response import *
-from app import db_connector
+from models import Company
+from response import *
+import db_connector
 
-from app.service.company_service import CompanyService
+from service.company_service import CompanyService
 
 router = APIRouter(prefix="/company")
 

@@ -1,5 +1,5 @@
-from app.response import *
-from app.model.company_dao import CompanyDao
+from response import *
+from model.company_dao import CompanyDao
 
 
 class CompanyService:
