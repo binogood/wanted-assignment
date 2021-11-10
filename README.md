@@ -108,6 +108,7 @@ Tool : <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&log
 
 ### 회사 생성(Company)
 - ```회사생성 성공시``` :
+
 ```
 - JSON
 {
@@ -140,8 +141,7 @@ Tool : <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&log
     }
   ]
 }headers=[("x-wanted-language", "ko")],
-```
-```
+
 - 성공 메시지
 - status_code : 200
 
@@ -155,8 +155,7 @@ Tool : <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&log
     "태그_14"
   ]
 }
-```
-```
+
 - 새로운 언어 헤더에 입력시 언어 생성 후, 1 ~ 30번까지 새로운 언어 ID를 가진 tag를 생성 
   (어떤 언어가 들어올지 몰라 추가되는 모든 언어의 tag이름은 'tag_{idx}'로 구현하였습니다.')
   
@@ -186,7 +185,7 @@ Tool : <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&log
     "tag_1"
   ]
 }headers=[("x-wanted-language", "fr")]
-
+```
 
 
 - ```회사생성 실패시``` :
