@@ -108,6 +108,87 @@ Tool : <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&log
 
 ### 회사 생성(Company)
 - ```회사생성 성공시``` :
+```
+- JSON
+{
+  "company_name": {
+    "ko": "불4조",
+    "en": "Phoneix",
+    "ja": "タグタグ"
+  },
+  "tags": [
+    {
+      "tag_name": {
+        "ko": "태그_1",
+        "en": "tag_1",
+        "ja": "タグ_1"
+      }
+    },
+    {
+      "tag_name": {
+        "ko": "태그_12",
+        "en": "tag_12",
+        "ja": "タグ_12"
+      }
+    },
+    {
+      "tag_name": {
+        "ko": "태그_14",
+        "en": "tag_14",
+        "ja": "タグ_14"
+      }
+    }
+  ]
+}headers=[("x-wanted-language", "ko")],
+```
+```
+- 성공 메시지
+- status_code : 200
+
+{
+  "company_name": {
+    "company_name": "불4조"
+  },
+  "tags": [
+    "태그_1",
+    "태그_12",
+    "태그_14"
+  ]
+}
+```
+```
+- 새로운 언어 헤더에 입력시 언어 생성 후, 1 ~ 30번까지 새로운 언어 ID를 가진 tag를 생성 
+  (어떤 언어가 들어올지 몰라 추가되는 모든 언어의 tag이름은 'tag_{idx}'로 구현하였습니다.')
+  
+- JSON
+{
+  "company_name": {
+    "ko": "원티드",
+    "en": "wanted",
+    "fr": "프랑스"
+  },
+  "tags": [
+    {
+      "tag_name": {
+        "ko": "태그_1",
+        "en": "tag_1",
+        "fr": "tag_1"
+      }
+    }
+  ]
+}
+
+- 성공 메시지
+- status_code : 200
+{
+  "company_name": "프랑스",
+  "tags": [
+    "tag_1"
+  ]
+}headers=[("x-wanted-language", "fr")]
+
+
+
 - ```회사생성 실패시``` :
 
 ### 회사 조회 (Search)
@@ -131,6 +212,26 @@ Tool : <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&log
 ### 회사명 자동 완성 (Search)
 - ```검색 성공시``` : status 200과 함께 쿼리와 언어값에 따른 모든 결과 값을 반환한다.
 - ```검색 실패시``` : status 404와 함께 조건에 맞는 회사명이 없다는 에러 메시지를 반환한다.
+
+
+### 아쉬웠던 점
+Fastapi를 처음 다루다니보 문법에서 미숙한 부분이 많이 나타납니다.
+
+처음에 할때는 "와 빠르고 편하다! Fastapi를 사용면 flask보다 빠른 api서버를 구성할 수 있겠다!"라는 마음가짐으로 도전 했습니다. 
+
+경험해본결과 Fastapi는 확실히 flask랑 비교가 많이 되었습니다. asyncio를 사용할 수 있는점과 swagger를 지원해주는 부분에서 아주 좋았습니다.
+
+코드를 짜면서 '미리 알았다면 더 좋았을텐데' 라는 많은 아쉬움이 담긴 코드를 작성했습니다.
+
+실제로 기능은 다 구현하였으나 test_app.py를 실행시키면 하나가 실패로 나옵니다.
+
+밤새 코드를 수정하는 부분에서 여러가지 문제가 발생하였고 결국은 프로젝트를 마무리하지 못하고 제출하게 되었습니다.
+
+완성된 프로젝트를 제출하고 싶었지만 첫 Fastapi프로젝트로 무척 아쉬운 프로젝트로 남을 것 같습니다.
+
+Fastapi는 충분히 매력적인 언어라고 생각이 들어 추후 프로젝트도 팀원들의 동의를 얻어 Fastapi로 해보고싶다는 생각이 들었습니다.
+
+새벽까지 고생하신 팀원분들! 너무너무 고생하셨습니다.
 
 
 # Reference
